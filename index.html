@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>MyTube</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+      color: white;
+    }
+
+    header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 20px;
+  background-image: url('https://i.ibb.co/N69qLGrL/1000066598.png');
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  height: 100px;
+  max-width: 1300px;
+  margin: 0 auto; /* لتمركز الهيدر في الوسط */
+  border-radius: 3px;
+}
+
+    header h1 {
+      font-size: 28px;
+      color: #ff004c;
+      text-shadow: 1px 1px 8px black;
+    }
+
+    nav a {
+      margin-left: 20px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      text-shadow: 1px 1px 6px black;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 40px;
+    }
+
+    .video-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .video-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 30px rgba(255, 0, 76, 0.5);
+    }
+
+    .video-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .video-card h3 {
+      padding: 10.9px;
+      font-size: 15px;
+      color: #fff;
+    }
+
+    .video-player {
+      padding: 40px;
+      text-align: center;
+    }
+
+    video {
+      border-radius: 2px;
+      max-width: 105%;
+      box-shadow: 0 0 20px rgba(255, 0, 76, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1></h1>
+    <nav>
+      <a href="index.html">الرئيسية</a>
+    </nav>
+  </header>
+
+  <div id="main-content"></div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const videoId = params.get('id');
+    const main = document.getElementById('main-content');
+
+    const videoSources = {
+    	"v6": "",
+    	"v5": "https://b.top4top.io/m_3380zasxp0.mp4",
+      "v1": "https://hls-uranus.sb-cd.com/hls/1/6/16225950-1080p.mp4/index-v1-a1.m3u8?_tid=16225950&d=1&m=41&secure=u1j2dv7ga1KNj7C09ngt4w,1744019064",
+      "v2": "https://vdownload-47.sb-cd.com/1/6/16225416-1080p.mp4?secure=X2oys7tcKcfvAflDeLXx3w,1744037091&m=47&d=1&_tid=16225416",
+      "v3": "https://www.w3schools.com/html/movie.mp4",
+      "v4": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+    };
+    
+    
+
+    if (videoId && videoSources[videoId]) {
+      main.innerHTML = `
+        <div class="video-player">
+          <h2>تشغيل الفيديو</h2>
+          <video controls autoplay>
+            <source src="${videoSources[videoId]}" type="video/mp4">
+            المتصفح لا يدعم تشغيل الفيديو.
+          </video>
+        </div>
+      `;
+    } else {
+      main.innerHTML = `
+        <div class="video-grid">
+          <div class="video-card" onclick="playVideo('v1')">
+            <img src="https://tbi.sb-cd.com/t/16225950/1/6/w:300/t6-enh/hot-milf-police-with-big-ass-f.jpg" alt="فيديو">
+            <h3>فيديو Top4Top</h3>
+          </div>
+          <div class="video-card" onclick="playVideo('v2')">
+            <img src="https://tbi.sb-cd.com/t/16225416/1/6/w:300/t6-enh/hotwifexxx-bootyful-big-ass.jpg" alt="فيديو">
+            <h3>مشهد احترافي</h3>
+          </div>
+          <div class="video-card" onclick="playVideo('v3')">
+            <img src="https://i.ytimg.com/vi/y6120QOlsfU/hqdefault.jpg" alt="فيديو">
+            <h3>فيديو إضافي 1</h3>
+          </div>
+          <div class="video-card" onclick="playVideo('v4')">
+            <img src="https://i.ytimg.com/vi/tgbNymZ7vqY/hqdefault.jpg" alt="فيديو">
+            <h3>فيديو إضافي 2</h3>
+          </div>
+          <div class="video-card" onclick="playVideo('v5')">
+  <img src="https://i.ibb.co/TMKZMrXV/1000063059.png" alt="فيديو">
+  <h3>فيديو جديد</h3>
+</div>
+
+        </div>
+      `;
+    }
+
+    function playVideo(id) {
+      window.location.href = `?id=${id}`;
+    }
+  </script>
+</body>
+</html>
